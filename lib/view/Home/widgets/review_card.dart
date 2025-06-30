@@ -29,7 +29,7 @@ class ReviewCard extends GetView<ReviewsController> {
       onExit: (_) => controller.toggleHoverButtons(false, index),
       child: Card(
         elevation: 2,
-        margin: const EdgeInsets.only(bottom: 110),
+        margin: const EdgeInsets.only(bottom: 80),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimensions.borderRadiusLarge),
         ),
@@ -145,25 +145,40 @@ class ReviewCard extends GetView<ReviewsController> {
                   ],
                 ),
               ),
-
+              Padding(
+                padding: const EdgeInsets.only(left: 6),
+                child: Text(
+                  account.socialMediaHandle,
+                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+                ),
+              ),
               AppDimensions.height20,
 
               // Section displaying follower, following, and post statistics.
               Container(
                 margin: EdgeInsets.all(5),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: const Color.fromARGB(255, 246, 245, 245),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _buildStatColumn('Followers', account.followers.toString()),
-                    VerticalDivider(color: Colors.grey, thickness: 2),
-                    _buildStatColumn('Following', account.following.toString()),
-                    VerticalDivider(color: Colors.grey, thickness: 2),
-                    _buildStatColumn('Posts', account.posts.toString()),
-                  ],
+                child: IntrinsicHeight(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buildStatColumn(
+                        'Followers',
+                        account.followers.toString(),
+                      ),
+                      const VerticalDivider(color: Colors.grey, thickness: 1),
+                      _buildStatColumn(
+                        'Following',
+                        account.following.toString(),
+                      ),
+                      const VerticalDivider(color: Colors.grey, thickness: 1),
+                      _buildStatColumn('Posts', account.posts.toString()),
+                    ],
+                  ),
                 ),
               ),
               AppDimensions.height20,
